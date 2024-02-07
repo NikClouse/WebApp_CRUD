@@ -1,0 +1,39 @@
+﻿@model List<User>
+
+<h2>Список Пользователей</h2>
+<hr />
+<a class=" btn btn-outline-success"
+   asp-controller="User"
+   asp-action="Add"
+   role="button"> Добавить пользователя</a>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Имя</th>
+            <th>Фамиля</th>
+            <th>Почта</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>
+                    <a class=" btn btn-success" asp-controller="User" asp-action="Update" role="button"> Редактировать</a>
+                     <a class=" btn btn-primary" asp-controller="User" asp-action="Delete" role="button"> Удалить</a>
+                    @Html.ActionLink("Деталь", "Details", new { id = user.Id }, new { @class = "btn btn-success" }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
